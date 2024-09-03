@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Tambah Opsi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .option-container {
+            margin-bottom: 15px;
+        }
+        .option-container input {
+            margin-right: 10px;
+            padding: 5px;
+            font-size: 14px;
+        }
+        .option-label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .add-option-btn {
+            color: blue;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Opsi Jawaban & Poin</h2>
+
+<div id="options">
+    <div class="option-container">
+        <label class="option-label">Opsi 1:</label>
+        <input type="text" name="points[]" placeholder="poin">
+        <input type="text" name="descriptions[]" placeholder="deskripsi opsi">
+    </div>
+</div>
+
+<div class="add-option-btn" id="addOptionBtn">+ tambah opsi</div>
+
+<script>
+    let optionCount = 1;
+
+    document.getElementById('addOptionBtn').addEventListener('click', function() {
+        optionCount++;
+        const optionsDiv = document.getElementById('options');
+
+        // Membuat elemen baru untuk opsi tambahan
+        const newOptionContainer = document.createElement('div');
+        newOptionContainer.className = 'option-container';
+
+        const newLabel = document.createElement('label');
+        newLabel.className = 'option-label';
+        newLabel.textContent = `Opsi ${optionCount}:`;
+
+        const newPointInput = document.createElement('input');
+        newPointInput.type = 'text';
+        newPointInput.name = 'points[]';
+        newPointInput.placeholder = 'poin';
+
+        const newDescriptionInput = document.createElement('input');
+        newDescriptionInput.type = 'text';
+        newDescriptionInput.name = 'descriptions[]';
+        newDescriptionInput.placeholder = 'deskripsi opsi';
+
+        newOptionContainer.appendChild(newLabel);
+        newOptionContainer.appendChild(newPointInput);
+        newOptionContainer.appendChild(newDescriptionInput);
+
+        optionsDiv.appendChild(newOptionContainer);
+    });
+</script>
+
+</body>
+</html>

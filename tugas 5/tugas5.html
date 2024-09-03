@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitung Mundur dengan Pesan Danger</title>
+    <style>
+        /* Styling untuk elemen countdown */
+        #countdown {
+            font-size: 30px; 
+            font-weight: bold;
+            margin: 20px;
+            color: #ffffff;
+            display: none; /* Sembunyikan hitungan mundur awalnya */
+        }
+
+        /* Styling untuk elemen danger-message */
+        #danger-message {
+            font-size: 24px;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden; 
+        }
+
+        /* Styling untuk span dalam elemen danger-message */
+        #danger-message span {
+            background-color: red;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        /* Styling untuk button */
+        button {
+            font-size: 18px; 
+            padding: 15px 30px;
+            cursor: pointer;
+            border: none;
+            background-color: green;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        /* Styling untuk body */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Elemen untuk menampilkan pesan danger -->
+    <div id="danger-message">
+        <span>Danger! Alert akan tertutup dalam <div id="countdown" style="display: inline;"></div></span>
+    </div>
+    <!-- Button untuk memulai countdown -->
+    <button onclick="startCountdown()">Munculkan Alert</button>
+    <script>
+        /**
+         * Fungsi untuk memulai countdown
+         */
+        function startCountdown() {
+            let count = 5; // Variabel untuk menyimpan nilai countdown
+            const countdownElement = document.getElementById('countdown'); // Elemen untuk menampilkan countdown
+            const dangerMessageElement = document.getElementById('danger-message'); // Elemen untuk menampilkan pesan danger
+
+            countdownElement.textContent = count; // Atur textContent dari countdownElement menjadi nilai count
+            countdownElement.style.display = 'inline'; // Tampilkan countdown
+            dangerMessageElement.style.visibility = 'visible'; // Tampilkan pesan danger
+
+            const intervalId = setInterval(() => {
+                count--; // Kurangi nilai count
+                if (count >= 0) { // Jika count masih lebih besar atau sama dengan 0
+                    countdownElement.textContent = count; // Atur textContent dari countdownElement menjadi nilai count
+                }
+                if (count <= 0) { // Jika count sudah 0 atau kurang
+                    countdownElement.textContent = ""; // Hapus textContent dari countdownElement
+                    dangerMessageElement.style.visibility = 'hidden'; // Sembunyikan pesan danger
+                    clearInterval(intervalId); // Hentikan interval
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
